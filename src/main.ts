@@ -8,6 +8,7 @@ const port = 4000;
 application.use(EXPRESS.urlencoded({ extended: true }))
 application.use(EXPRESS.json())
 
+
 application.use("/auth",authRouter)
 
 
