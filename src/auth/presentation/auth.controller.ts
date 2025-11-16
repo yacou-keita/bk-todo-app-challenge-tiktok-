@@ -6,23 +6,30 @@ import {
   ResetPasswordValidator,
 } from "@src/auth/presentation/auth.validator.ts";
 import { SendError, ZodError } from "@src/core/utils/sendError.util.ts";
+import { Register } from "@src/auth/domain/features/register.feature.ts";
+import { AuthMongodbRepository } from "@src/auth/datasource/mongodb/auth.mongodb.ts";
+import { User } from "@src/auth/domain/entities/user.entity.ts";
 
 export const authRouter = Router();
+const register = new Register(new AuthMongodbRepository());
 
 authRouter
   .post("/register", (request: Request, response: Response) => {
     const validator = RegisterValidator.safeParse(request.body);
+
     if (validator.success) {
-      response.json({
-        firstname: validator.data.firstname,
-        lastname: validator.data.lastname,
-        email: validator.data.email,
-        password: validator.data.password,
-        confirmPassword: validator.data.confirmPassword,
-      });
-    } else {
+      register.execute(
+        User.createAccount({
+          email: validator.data.email,
+          firstname: validator.data.firstname,
+          lastname: validator.data.lastname,
+          password: validator.data.password,
+        })
+      );
+      response.json("user register")
+      return
+    } 
       response.json(SendError(validator.error.issues as ZodError[]));
-    }
   })
 
   .post("/login", (request: Request, response: Response) => {
