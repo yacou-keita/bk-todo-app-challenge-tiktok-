@@ -3,6 +3,11 @@ import { AuthRepository } from "@src/auth/domain/repositories/auth.repository.ts
 import { LoginRequest } from "@src/auth/domain/requests/login.request.ts";
 
 export class AuthMongodbRepository implements AuthRepository {
+    forgotPassword(email: String): Promise<void> {
+         console.log("reset email sent")
+        console.log(`email: ${email}`)
+       return Promise.resolve()
+    }
     login(request: LoginRequest): Promise<User> {
         console.log("user logged")
 
