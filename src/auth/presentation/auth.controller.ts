@@ -14,8 +14,10 @@ import { ForgotPassword } from "@src/auth/domain/features/forgotPassword.feature
 import { ResetPassword } from "@src/auth/domain/features/resetPassword.feature.ts";
 import { LoginRequest } from "@src/auth/domain/requests/login.request.ts";
 import { ResetPasswordRequest } from "@src/auth/domain/requests/ressetPassword.request.ts";
+import { SendForgotPasswordLink } from "@src/auth/datasource/nodeMailer/sendForgotPasswordLink.ts";
 
 export const authRouter = Router();
+new SendForgotPasswordLink()
 const register = new Register(new AuthMongodbRepository());
 const login = new Login(new AuthMongodbRepository());
 const forgotPassword = new ForgotPassword(new AuthMongodbRepository());

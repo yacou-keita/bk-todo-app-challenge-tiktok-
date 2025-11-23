@@ -11,8 +11,7 @@ export class AuthMongodbRepository implements AuthRepository {
        return Promise.resolve()
     }
     forgotPassword(email: String): Promise<void> {
-         console.log("reset email sent")
-        console.log(`email: ${email}`)
+        console.log(`forgotPassword: ${email}`)
        return Promise.resolve()
     }
     login(request: LoginRequest): Promise<User> {
