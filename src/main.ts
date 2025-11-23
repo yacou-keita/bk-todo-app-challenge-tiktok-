@@ -12,8 +12,6 @@ application.use(EXPRESS.json())
 application.use("/auth",authRouter)
 
 
-
-
 application.listen(port, () => {
   console.log(`connected to ${port}`);
 });
