@@ -1,8 +1,15 @@
 import { User } from "@src/auth/domain/entities/user.entity.ts";
 import { AuthRepository } from "@src/auth/domain/repositories/auth.repository.ts";
 import { LoginRequest } from "@src/auth/domain/requests/login.request.ts";
+import { ResetPasswordRequest } from "@src/auth/domain/requests/ressetPassword.request.ts";
 
 export class AuthMongodbRepository implements AuthRepository {
+    resetPassword(request: ResetPasswordRequest): Promise<void> {
+         console.log("passord reset")
+        console.log(`email: ${request.email}`)
+        console.log(`password: ${request.password}`)
+       return Promise.resolve()
+    }
     forgotPassword(email: String): Promise<void> {
          console.log("reset email sent")
         console.log(`email: ${email}`)
